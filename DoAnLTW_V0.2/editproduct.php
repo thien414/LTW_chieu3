@@ -153,14 +153,18 @@ if ($_SESSION['user'] != 'admin')
                                 <div class="control-group">
                                     <label class="control-label col-md-3">Choose an image :</label>
                                     <div class="controls">
-                                        <input type="file" name="fileUpload" id="fileUpload" value="<?php echo $productById[0]['img'] ?>">*
+                                        <input type="file" name="fileUpload" value="<?php echo $productById[0]['img'] ?>">*
                                     </div>
                                 </div>
                                 <div class="control-group">                                    
                                     <div class="control-group">
+                                        <label class="control-label">Description</label>
+                                        <div class="controls">
+                                            <textarea class="span11" placeholder="Description" name = "description"><?php echo $productById[0]['details'] ?></textarea>
+                                        </div>
                                         <label class="control-label col-md-3">Price :</label>
                                         <div class="controls">
-                                            <input type="text" class="span11" placeholder="price" name = "price" value="<?php echo $productById[0]['price'] ?>">*
+                                            <input type="number" class="span11" placeholder="price" name = "price" value="<?php echo $productById[0]['price'] ?>">*
                                         </div>
 
                                     </div>

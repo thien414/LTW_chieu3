@@ -158,9 +158,13 @@ else
                                 </div>
                                 <div class="control-group">                                    
                                     <div class="control-group">
+                                        <label class="control-label">Description</label>
+                                        <div class="controls">
+                                            <textarea class="span11" placeholder="Description" name = "description"></textarea>
+                                        </div>
                                         <label class="control-label col-md-3">Price :</label>
                                         <div class="controls">
-                                            <input type="text" class="span11" placeholder="price" name = "price" /> *
+                                            <input type="number" class="span11" placeholder="price" name = "price" /> *
                                         </div>
 
                                     </div>

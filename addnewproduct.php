@@ -170,7 +170,7 @@ else
                                     </div>
 
                                     <div class="form-actions">
-                                        <button type="submit" class="btn btn-success">ADD</button>
+                                        <button type="submit" name="submit" value="Upload Image" class="btn btn-success">ADD</button>
                                     </div>
                                 </div>
                         </form>                        

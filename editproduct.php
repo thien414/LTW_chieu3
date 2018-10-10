@@ -142,18 +142,20 @@ if ($_SESSION['user'] != 'admin')
                                 <label class="control-label col-md-3">Choose a manufacture :</label>
                                 <div class="controls">
                                     <select name="brand" value="<?php echo $productById[0]['brand'] ?>" >
-                                        <option value="Ogival">Ogival</option>
+                                        <option  value="Ogival">Ogival</option>
                                         <option value="Mido">Mido</option>
-                                        <option value="Bovet">Bovet</option>
-                                        <option value="Cartier">Cartier</option>
-                                        <option value="Montblanc">Montblanc</option>
+                                        <option  value="Bovet">Bovet</option>
+                                        <option  value="Cartier">Cartier</option>
+                                        <option  value="Montblanc">Montblanc</option>
 
                                     </select> *
                                 </div>
                                 <div class="control-group">
                                     <label class="control-label col-md-3">Choose an image :</label>
                                     <div class="controls">
-                                        <input type="file" name="fileUpload" value="<?php echo $productById[0]['img'] ?>">*
+                                        <input  type="file" name="fileUpload" value="<?php echo $productById[0]['img'] ?>">*
+                                       
+                                        
                                     </div>
                                 </div>
                                 <div class="control-group">                                    

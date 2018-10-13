@@ -1,24 +1,24 @@
 <?php 
-	require "app/users.php";
-	session_start();
-    if(isset($_SESSION['user'])){
-        header('location: index.php');
+    require "app/users.php";
+    session_start();
+    $users = new users();
+    $error = "";
+    if(isset($_POST['password'])){
+        $password = $_POST['password'];
+        $passwordtow = $_POST['passwordtow'];
+            if($password == $passwordtow){
+                $users->edituser($_SESSION['name'], $password);
+                unset($_SESSION['name']);
+                header('location:./');
+            }
+            else{
+                $error = "Mật khẩu không trùng khớp";
+            }
+        
     }
-	$users = new users();
-	$error = "";
-	if(isset($_POST['username'])){
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		if($users->login($username, $password)){
-			$_SESSION['user'] = $username;
-			header('location:./');
-		}
-		else{
-			$error = "Sai tài khoản hoặc mật khẩu";
-		}
-	}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +29,7 @@
     <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/login.css">
-    <title>Đăng nhập</title>
+    <title>Mật khẩu mới</title>
 </head>
 <body>
     <!-- Header -->
@@ -109,23 +109,17 @@
     </header>
     <!-- Content -->
     <div class="container">
-    	<div>
-            <h1 class="title">Đăng nhập</h1>
+        <div>
+            <h1 class="title">Mật khẩu mới</h1>
         </div>
      
         <div class = "login">
-        	 <form action="login.php" method="POST">
-			        <input type="text" name="username" class="form-control login-form" placeholder="Tên tài khoản" required autofocus>
-			        <input type="password" name="password" class="form-control login-form" placeholder="Mật khẩu" required>
-		      <span class="error login-form"><?php echo $error ?></span>
-        <button class="btn btn-lg btn-primary btn-block login-form" type="submit">Sign in</button>
-        <p>-------------- Hoặc ----------------</p>
-        <div>
-            <a class="btn btn-lg btn-primary " href="adduser.php" style=" background-color: #00FF00; direction: none;">tạo tài khoản mới</a>
-            <br>
-            <a href="identify.php" style=" direction: none;">Quên mật khẩu?</a>
-        </div>
-        
+             <form action="security.php" method="POST">
+                <input type="password" name="password" class="form-control login-form" placeholder="Mật khẩu mới" required>
+                <input type="password" name="passwordtow" class="form-control login-form" placeholder="Nhập lại mật khẩu" required>
+                <span class="error login-form"><?php echo $error ?></span>
+        <button class="btn btn-lg btn-primary btn-block login-form" type="submit">Duyệt</button>
+        <a href="login.php" style=" direction: none;">Hủy</a>
       </form>
         </div>
     </div> <!-- /container -->

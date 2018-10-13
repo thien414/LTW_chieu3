@@ -5,17 +5,32 @@
         header('location: index.php');
     }
 	$users = new users();
+    $alluser = $users->alluser();
 	$error = "";
-	if(isset($_POST['username'])){
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		if($users->login($username, $password)){
-			$_SESSION['user'] = $username;
-			header('location:./');
-		}
-		else{
-			$error = "Sai tài khoản hoặc mật khẩu";
-		}
+	if(isset($_POST['name'])){
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $passwordtow = $_POST['passwordtow'];
+        $keyuser = $_POST['keyuser'];
+
+        foreach ($alluser as $row) {
+
+            if(strcmp($row['username'], $name) == 0){
+                $error = "Tên tài khoản đã tồn tại";
+                break;
+            }
+              
+        }
+		if(strcmp($error, "") == 0){
+            if($password == $passwordtow){
+                $users->adduser($name, $password, $keyuser);
+                header('location:./');
+            }
+            else{
+                $error = "Mật khẩu không trùng khớp";
+            }
+        }
+		
 	}
 
 ?>
@@ -29,7 +44,7 @@
     <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/login.css">
-    <title>Đăng nhập</title>
+    <title>Đăng ký</title>
 </head>
 <body>
     <!-- Header -->
@@ -110,22 +125,18 @@
     <!-- Content -->
     <div class="container">
     	<div>
-            <h1 class="title">Đăng nhập</h1>
+            <h1 class="title">Đăng ký</h1>
         </div>
      
         <div class = "login">
-        	 <form action="login.php" method="POST">
-			        <input type="text" name="username" class="form-control login-form" placeholder="Tên tài khoản" required autofocus>
+        	 <form action="adduser.php" method="POST">
+			        <input type="text" name="name" class="form-control login-form" placeholder="Tên tài khoản" required autofocus>
 			        <input type="password" name="password" class="form-control login-form" placeholder="Mật khẩu" required>
+                    <input type="password" name="passwordtow" class="form-control login-form" placeholder="Nhập lại mật khẩu" required>
+                    <input type="number" name="keyuser" class="form-control login-form" placeholder="từ khóa bảo mật" required>
 		      <span class="error login-form"><?php echo $error ?></span>
-        <button class="btn btn-lg btn-primary btn-block login-form" type="submit">Sign in</button>
-        <p>-------------- Hoặc ----------------</p>
-        <div>
-            <a class="btn btn-lg btn-primary " href="adduser.php" style=" background-color: #00FF00; direction: none;">tạo tài khoản mới</a>
-            <br>
-            <a href="identify.php" style=" direction: none;">Quên mật khẩu?</a>
-        </div>
-        
+        <button class="btn btn-lg btn-primary btn-block login-form" type="submit">sign up</button>
+        <a href="login.php" style=" direction: none;">Hủy</a>
       </form>
         </div>
     </div> <!-- /container -->

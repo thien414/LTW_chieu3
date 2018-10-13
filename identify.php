@@ -1,24 +1,39 @@
 <?php 
-	require "app/users.php";
-	session_start();
-    if(isset($_SESSION['user'])){
-        header('location: index.php');
+    require "app/users.php";
+    session_start();
+    $users = new users();
+    $temp = "";
+    $error = "";
+    if(isset($_POST['name'])){
+        $alluser = $users->alluser();
+        $name = $_POST['name'];
+        foreach ($alluser as $row) {
+            if(strcmp($row['username'], $name) == 0){
+                $_SESSION['name'] = $name;
+                $error = "ok";
+                break;
+            }
+              
+        }
+        if(strcmp($error, "") == 0){
+            $error = "Tên tài khoản không tồn tại";
+        }
+         
     }
-	$users = new users();
-	$error = "";
-	if(isset($_POST['username'])){
-		$username = $_POST['username'];
-		$password = $_POST['password'];
-		if($users->login($username, $password)){
-			$_SESSION['user'] = $username;
-			header('location:./');
-		}
-		else{
-			$error = "Sai tài khoản hoặc mật khẩu";
-		}
-	}
+    if(isset($_POST['keyuser'])){
+        $userid = $users->getuserByName($_SESSION['name']);
+        $keyuser = $_POST['keyuser'];
+        foreach ($userid as $row) {
+            if($row['user_type'] == $keyuser){
+                header("location:security.php");
+            }
+        }
+        $temp = "Từ khóa bảo mật không chính sát";
+    }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +44,7 @@
     <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/login.css">
-    <title>Đăng nhập</title>
+    <title>Quên Mật Khẩu</title>
 </head>
 <body>
     <!-- Header -->
@@ -109,23 +124,25 @@
     </header>
     <!-- Content -->
     <div class="container">
-    	<div>
-            <h1 class="title">Đăng nhập</h1>
-        </div>
-     
-        <div class = "login">
-        	 <form action="login.php" method="POST">
-			        <input type="text" name="username" class="form-control login-form" placeholder="Tên tài khoản" required autofocus>
-			        <input type="password" name="password" class="form-control login-form" placeholder="Mật khẩu" required>
-		      <span class="error login-form"><?php echo $error ?></span>
-        <button class="btn btn-lg btn-primary btn-block login-form" type="submit">Sign in</button>
-        <p>-------------- Hoặc ----------------</p>
         <div>
-            <a class="btn btn-lg btn-primary " href="adduser.php" style=" background-color: #00FF00; direction: none;">tạo tài khoản mới</a>
-            <br>
-            <a href="identify.php" style=" direction: none;">Quên mật khẩu?</a>
+            <h1 class="title">Tìm tài khoản của bạn</h1>
         </div>
+        <?php if(strcmp($error, "ok") == 0){ ?>
+            <div class = "login">
+             <form action="identify.php" method="POST">
+                <input type="number" name="keyuser" class="form-control login-form" placeholder="từ khóa bảo mật" required>
+            <span class="error login-form"><?php echo $temp ?></span>
+            <button class="btn btn-lg btn-primary" type="submit">OK</button>
+        <?php }else{ ?> 
+            <div class = "login">
+             <form action="identify.php" method="POST">
+                <input type="text" name="name" class="form-control login-form" placeholder="Tên tài khoản" required autofocus>
+            <span class="error login-form"><?php echo $error ?></span>
+            <span class="error login-form"><?php echo $temp ?></span>
+            <button class="btn btn-lg btn-primary btn-block login-form" type="submit">tìm kiếm</button>
+        <?php } ?>
         
+        <a href="login.php" style=" direction: none;">Hủy</a>
       </form>
         </div>
     </div> <!-- /container -->

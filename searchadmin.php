@@ -159,8 +159,8 @@ else
     <div align="center">
                 <ul class="pagination pagination-lg" id="page-list">
                     <?php 
-                    $base_url = $_SERVER['PHP_SELF']."?";
-                    echo $products->create_links($base_url, $total_rows, $page, $per_page);
+                    $base_url = $_SERVER['PHP_SELF']."?key=$keyword&";
+                    echo $search->create_links($base_url, $total_rows, $page, $per_page);
                     ?>
                 </ul>
             </div>

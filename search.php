@@ -2,7 +2,7 @@
 require "app/search.php";
 session_start();
 $search = new search();
-$keyword = $_GET['key'];
+$keyword = $_SESSION['search'];
 $per_page = 8;
 $total_rows = $search->countSearched($keyword);
 if (isset($_GET['page']))
@@ -14,6 +14,7 @@ else
         $page = 1;
     }
     $data = $search->searchProduct($keyword, $page, $per_page);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +60,7 @@ else
                     <li><a href="contact.php">Liên hệ</a></li>
                 </ul>
             <!-- Form tim kiem -->
-            <form action="search.php" class="navbar-form navbar-left" role="search" method="GET">
+            <form action="check.php" class="navbar-form navbar-left" role="search" method="GET">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nhập từ khoá..." name="key">
                 </div>

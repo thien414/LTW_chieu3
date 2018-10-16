@@ -78,7 +78,7 @@
                     <li><a href="contact.php">Liên hệ</a></li>
                 </ul>
             <!-- Form tim kiem -->
-            <form action="search.php" class="navbar-form navbar-left" role="search" method="GET">
+            <form action="check.php" class="navbar-form navbar-left" role="search" method="GET">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nhập từ khoá..." name="key">
                 </div>

@@ -9,7 +9,7 @@ spl_autoload_register(function ($class_name){
 });
 $product = new product();
 
-$target_dir = "./public/img/".$brand."/";
+$target_dir = "./public/img/";
 $target_img = $target_dir . basename($_FILES['fileUpload']["name"]);
 
 if(move_uploaded_file($_FILES['fileUpload']["tmp_name"], $target_img)){

@@ -98,7 +98,7 @@ $data = $product->getProduct($id);
                     
             <div class="col-md-6">
                 
-                 <img src="public/img/<?php echo $row['brand']."/".$row['img']?>" height="600px">
+                 <img src="public/img/<?php echo $row['img']?>" height="600px">
                 
             </div>
 

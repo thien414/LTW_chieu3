@@ -123,7 +123,7 @@ $product = new products();
 						<tr>
 							<td data-th="Product">
 								<div class="row">
-									<div class="col-sm-2 hidden-xs"><a href="details.php?id=<?php echo $key?>"><img src="public/img/<?php echo $data[0]['brand'] .'/'. $data[0]['img'] ?>" height="50px" class="img-responsive"/></a></div>
+									<div class="col-sm-2 hidden-xs"><a href="details.php?id=<?php echo $key?>"><img src="public/img/<?php echo $data[0]['img'] ?>" height="50px" class="img-responsive"/></a></div>
 									<div class="col-sm-10">
                                     <a href="details.php?id=<?php echo $key?>"><h4 class="nomargin"><?php echo $data[0]['name'] ?></h4></a>
 									</div>

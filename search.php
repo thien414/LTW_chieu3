@@ -112,7 +112,7 @@ else
                 {
             ?>
                 <div class="col-md-3 sp" align="center">
-                    <a href="details.php?id=<?php echo $row['id']?>"><img src="public/img/<?php echo $row['brand']."/".$row['img']?>" class="hinhSP"></a>
+                    <a href="details.php?id=<?php echo $row['id']?>"><img src="public/img/<?php echo $row['img']?>" class="hinhSP"></a>
                         <a href="details.php?id=<?php echo $row['id']?>"><h4><?php echo substr($row['name'],0,20)?>...</h4></a>
                             <b>Price:</b>
                             <div class = "price">

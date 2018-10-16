@@ -138,7 +138,7 @@ else
                                 <td name='id'><?php 
                                     echo $row['id'];
                                  ?></td>
-                                 <td><img src="public/img/<?php echo $row['brand']."/".$row['img']?>" class="hinhSP"></td>
+                                 <td><img src="public/img/<?php echo $row['img']?>" class="hinhSP"></td>
                                 <td><?php echo $row['name']; ?></td>
                                 <td><?php echo $row['brand']?></td>
                                 <td><?php echo $row['price']?></td>
